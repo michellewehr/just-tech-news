@@ -1,6 +1,8 @@
 const express = require('express');
 const routes = require('./routes');
 const sequelize = require('./config/connection');
+//stylesheet 
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -11,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // turn on routes
 app.use(routes);
+//stylesheet 
+app.use(express.static(path.join(__dirname, 'public')));
 
 // turn on connection to db and server
 //In the sync method, there is a configuration parameter { force: false }. If we change the value of the force property to true, then the database connection must sync with the model definitions and associations. By forcing the sync method to true, we will make the tables re-create if there are any association changes.
